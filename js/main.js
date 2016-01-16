@@ -4,14 +4,14 @@ var AboutMe = React.createClass({
             <div>
                 <div className="container">
                     <div className="page-header">
-                        <h1>About Me</h1>
+                        <h1>{this.props.data.title}</h1>
                     </div>
-                    <p className="lead">Mariusz Sygnowski</p>
+                    <p className="lead">{this.props.data.name}</p>
                 </div>
 
                 <footer>
                     <div className="container">
-                        <p className="text-muted">2016</p>
+                        <p className="text-muted">{this.props.data.year}</p>
                     </div>
                 </footer>
             </div>)
@@ -20,6 +20,6 @@ var AboutMe = React.createClass({
 
 
 ReactDOM.render(
-    <AboutMe />,
+    <AboutMe data={appData} />,
     document.getElementById('main')
 );

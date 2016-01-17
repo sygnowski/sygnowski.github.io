@@ -1,6 +1,7 @@
 var SiteNav = React.createClass({
     getInitialState: function () {
-        return {selectedNav: []};
+        var firstNavItemId = String(this.props.data[0].id);
+        return {selectedNav: [firstNavItemId]};
     },
     handelSelect: function (id) {
         this.setState({selectedNav: [id]})
@@ -63,7 +64,7 @@ var AboutMe = React.createClass({
                 </div>
                 <footer>
                     <div className="container">
-                        <p className="text-muted">{this.props.data.year}</p>
+                        <p className="text-muted">{this.props.data.year}, powered by ReactJS, version: {this.props.data.version}</p>
                     </div>
                 </footer>
             </div>)

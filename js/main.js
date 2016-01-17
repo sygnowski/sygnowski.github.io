@@ -1,3 +1,22 @@
+var SiteNav = React.createClass( {
+    render: function() {
+        return (
+            <div class="list-group">
+                {this.props.data.map(function(link) {
+                    return <SiteNavItem key={link.id} navInfo={link} />
+                })}
+            </div>
+        )
+    }
+});
+
+var SiteNavItem = React.createClass({
+    render: function() {
+        return <a href={this.props.navInfo.link} className="list-group-item">{this.props.navInfo.title}</a>;
+    }
+});
+
+
 var AboutMe = React.createClass({
     render: function () {
         return (
@@ -14,12 +33,15 @@ var AboutMe = React.createClass({
                         <p className="text-muted">{this.props.data.year}</p>
                     </div>
                 </footer>
+
+
+                <SiteNav data={this.props.data.pageNav} />
             </div>)
     }
 });
 
 
 ReactDOM.render(
-    <AboutMe data={appData} />,
+    <AboutMe data={appData} /> ,
     document.getElementById('main')
 );

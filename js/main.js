@@ -44,6 +44,20 @@ var SiteNavItem = React.createClass({
 });
 
 
+var Content = React.createClass({
+    render: function () {
+        return (
+            <div>
+                <div className="page-header">
+                    <h1>{this.props.title}</h1>
+                </div>
+                <p className="lead">{this.props.text}</p>
+            </div>
+        )
+    }
+});
+
+
 var AboutMe = React.createClass({
 
     render: function () {
@@ -51,23 +65,14 @@ var AboutMe = React.createClass({
             <div className="container">
                 <div className="row">
                     <SiteNav data={this.props.data.pageNav}/>
-
                     <div className="col-md-6">
-                        <div>
-                            <div className="page-header">
-                                <h1>{this.props.data.title}</h1>
-                            </div>
-                            <p className="lead">{this.props.data.name}</p>
-                        </div>
+                        <Content title={this.props.data.title} text={this.props.data.name}/>
                     </div>
-
                 </div>
                 <footer className="footer">
-
                     <p className="text-muted text-center">{this.props.data.year}, powered by ReactJS, Bootstrap.
                         <small>version: {this.props.data.version}</small>
                     </p>
-
                 </footer>
             </div>)
     }

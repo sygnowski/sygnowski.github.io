@@ -6,7 +6,7 @@ var appData = {
 
     pageNav: [
         {id: 1, title: "Home", link : "#"},
-        {id: 2, title: "Developer", link : "#"},
+        {id: 2, title: "Developer", link : "data/data-developer.json"},
         {id: 3, title: "Photographer", link: "#"},
         {id: 4, title: "Contact", link: "#"}
     ]

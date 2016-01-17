@@ -60,6 +60,21 @@ var Content = React.createClass({
 var AboutMe = React.createClass({
     handleNav: function () {
         console.log("on nav");
+        this.requestData();
+    },
+
+    requestData: function() {
+        $.ajax({
+            url: 'data/data-developer.json',
+            dataType: 'json',
+            type: 'GET',
+            success: function(data) {
+                this.setState(data);
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error('ajax', status, err.toString());
+            }.bind(this)
+        });
     },
 
     getInitialState: function () {

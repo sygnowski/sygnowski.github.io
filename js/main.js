@@ -1,23 +1,53 @@
 var SiteNav = React.createClass({
+
+    getInitialState: function () {
+        return {selectedNav: []};
+    },
+
+
+    handelSelect: function () {
+        console.log('handle select ');
+    },
+
+
     render: function () {
+
+        var navItems = this.props.data.map(function (link) {
+            return <SiteNavItem key={link.id} navInfo={link}/>
+        });
+
         return (
             <div className="col-md-2 list-group">
-                {this.props.data.map(function (link) {
-                    return <SiteNavItem key={link.id} navInfo={link}/>
-                })}
+                {navItems}
             </div>
         )
     }
 });
 
 var SiteNavItem = React.createClass({
+
+    getInitialState: function () {
+        return {isSelected: false};
+    },
+
+    handleClick: function (event) {
+        console.log('on click ');
+
+        //this.props.onHandleSelect();
+    },
+
     render: function () {
-        return <a href={this.props.navInfo.link} className="list-group-item">{this.props.navInfo.title}</a>;
+        return <a onClick={this.handleClick} href={this.props.navInfo.link}
+                  className="list-group-item">{this.props.navInfo.title}</a>;
     }
 });
 
 
 var AboutMe = React.createClass({
+
+    handleClick: function (link) {
+        console.log('on click ' + link);
+    },
     render: function () {
         return (
             <div className="container">

@@ -62,9 +62,9 @@ var AboutMe = React.createClass({
                     </div>
 
                 </div>
-                <footer>
+                <footer className="footer">
                     <div className="container">
-                        <p className="text-muted">{this.props.data.year}, powered by ReactJS, version: {this.props.data.version}</p>
+                        <p className="text-muted text-center">{this.props.data.year}, powered by ReactJS, Bootstrap. <small>version: {this.props.data.version}</small></p>
                     </div>
                 </footer>
             </div>)

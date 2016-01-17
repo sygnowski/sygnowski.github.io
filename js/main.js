@@ -4,7 +4,8 @@ var SiteNav = React.createClass({
         return {selectedNav: [firstNavItemId]};
     },
     handelSelect: function (id) {
-        this.setState({selectedNav: [id]})
+        this.setState({selectedNav: [id]});
+        this.props.onNav(id);
     },
     render: function () {
         var hnd = this.handelSelect;
@@ -43,7 +44,6 @@ var SiteNavItem = React.createClass({
     }
 });
 
-
 var Content = React.createClass({
     render: function () {
         return (
@@ -57,16 +57,26 @@ var Content = React.createClass({
     }
 });
 
-
 var AboutMe = React.createClass({
+    handleNav: function () {
+        console.log("on nav");
+    },
+
+    getInitialState: function () {
+        return ({
+            title: this.props.data.title,
+            text: this.props.data.name
+        });
+    },
 
     render: function () {
         return (
             <div className="container">
                 <div className="row">
-                    <SiteNav data={this.props.data.pageNav}/>
+                    <SiteNav onNav={this.handleNav} data={this.props.data.pageNav}/>
+
                     <div className="col-md-6">
-                        <Content title={this.props.data.title} text={this.props.data.name}/>
+                        <Content title={this.state.title} text={this.state.text}/>
                     </div>
                 </div>
                 <footer className="footer">
@@ -77,7 +87,6 @@ var AboutMe = React.createClass({
             </div>)
     }
 });
-
 
 ReactDOM.render(
     <AboutMe data={appData}/>,

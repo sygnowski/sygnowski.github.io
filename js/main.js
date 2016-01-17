@@ -1,18 +1,18 @@
 var SiteNav = React.createClass({
     getInitialState: function () {
-        var firstNavItemId = String(this.props.data[0].id);
+        var firstNavItemId = this.props.data[0].id;
         return {selectedNav: [firstNavItemId]};
     },
-    handelSelect: function (id) {
-        this.setState({selectedNav: [id]});
-        this.props.onNav(id);
+    handelSelect: function (link) {
+        this.setState({selectedNav: [link.id]});
+        this.props.onNav(link);
     },
     render: function () {
         var hnd = this.handelSelect;
         var selection = this.state.selectedNav;
         var navItems = this.props.data.map(function (link) {
 
-            var isSelected = -1 != selection.indexOf(String(link.id));
+            var isSelected = -1 != selection.indexOf(link.id);
 
             return <SiteNavItem onHandleSelection={hnd} key={link.id} navInfo={link} isSelected={isSelected}/>
         });
@@ -29,8 +29,9 @@ var SiteNavItem = React.createClass({
     getInitialState: function () {
         return {isSelected: false};
     },
-    handleClick: function (event) {
-        this.props.onHandleSelection(event.target.id);
+    handleClick: function (link) {
+        console.log(link);
+        this.props.onHandleSelection(link);
     },
     render: function () {
         var css = "list-group-item";
@@ -39,8 +40,8 @@ var SiteNavItem = React.createClass({
         }
 
         return <a id={this.props.navInfo.id}
-                  onClick={this.handleClick}
-                  href={this.props.navInfo.link} className={css}>{this.props.navInfo.title}</a>;
+                  onClick={this.handleClick.bind(this, this.props.navInfo)}
+                  className={css}>{this.props.navInfo.title}</a>;
     }
 });
 
@@ -58,20 +59,20 @@ var Content = React.createClass({
 });
 
 var AboutMe = React.createClass({
-    handleNav: function () {
+    handleNav: function (link) {
         console.log("on nav");
-        this.requestData();
+        this.requestData(link.link);
     },
 
-    requestData: function() {
+    requestData: function (dataUrl) {
         $.ajax({
-            url: 'data/data-developer.json',
+            url: dataUrl,
             dataType: 'json',
             type: 'GET',
-            success: function(data) {
+            success: function (data) {
                 this.setState(data);
             }.bind(this),
-            error: function(xhr, status, err) {
+            error: function (xhr, status, err) {
                 console.error('ajax', status, err.toString());
             }.bind(this)
         });

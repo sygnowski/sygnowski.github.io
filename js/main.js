@@ -30,7 +30,6 @@ var SiteNavItem = React.createClass({
         return {isSelected: false};
     },
     handleClick: function (link) {
-        console.log(link);
         this.props.onHandleSelection(link);
     },
     render: function () {
@@ -59,8 +58,8 @@ var Content = React.createClass({
 });
 
 var AboutMe = React.createClass({
+
     handleNav: function (link) {
-        console.log("on nav");
         this.requestData(link.link);
     },
 
@@ -81,8 +80,13 @@ var AboutMe = React.createClass({
     getInitialState: function () {
         return ({
             title: this.props.data.title,
-            text: this.props.data.name
+            text: this.props.data.names
         });
+    },
+
+    componentDidMount: function () {
+        var homeUrl = this.props.data.pageNav[0].link;
+        this.requestData(homeUrl);
     },
 
     render: function () {

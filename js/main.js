@@ -5,15 +5,16 @@ var SiteNav = React.createClass({
     },
 
 
-    handelSelect: function () {
-        console.log('handle select ');
+    handelSelect: function (id) {
+        console.log('handle select ' + id);
     },
 
 
     render: function () {
+        var hnd = this.handelSelect;
 
         var navItems = this.props.data.map(function (link) {
-            return <SiteNavItem key={link.id} navInfo={link}/>
+            return <SiteNavItem onHandleSelection={hnd} key={link.id} navInfo={link}/>
         });
 
         return (
@@ -31,23 +32,19 @@ var SiteNavItem = React.createClass({
     },
 
     handleClick: function (event) {
-        console.log('on click ');
-
-        //this.props.onHandleSelect();
+        this.props.onHandleSelection(event.target.id);
     },
 
     render: function () {
-        return <a onClick={this.handleClick} href={this.props.navInfo.link}
-                  className="list-group-item">{this.props.navInfo.title}</a>;
+        return <a id={this.props.navInfo.id}
+                  onClick={this.handleClick}
+                  href={this.props.navInfo.link} className="list-group-item">{this.props.navInfo.title}</a>;
     }
 });
 
 
 var AboutMe = React.createClass({
 
-    handleClick: function (link) {
-        console.log('on click ' + link);
-    },
     render: function () {
         return (
             <div className="container">

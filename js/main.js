@@ -57,6 +57,33 @@ var Content = React.createClass({
     }
 });
 
+
+var HeaderImage = React.createClass({
+    getInitialState: function () {
+        return {wx: window.innerWidth};
+    },
+    handleResize: function (e) {
+        this.setState({wx: window.innerWidth});
+    },
+    componentDidMount: function () {
+        window.addEventListener('resize', this.handleResize);
+    },
+    componentWillUnmount: function () {
+        window.removeEventListener('resize', this.handleResize);
+    },
+
+    render() {
+        var style = {
+            width: this.state.wx > this.props.width ? this.props.width : this.state.wx
+        }
+        return (
+            <div className="header-image-outer">
+                <img style={style} className="header-image" src={this.props.src}/>
+            </div>
+        )
+    }
+});
+
 var AboutMe = React.createClass({
 
     handleNav: function (link) {
@@ -92,6 +119,8 @@ var AboutMe = React.createClass({
     render: function () {
         return (
             <div>
+                <HeaderImage width={this.props.data.header.width} src={this.props.data.header.image}/>
+
                 <div className="container">
                     <div className="row">
                         <SiteNav onNav={this.handleNav} data={this.props.data.pageNav}/>

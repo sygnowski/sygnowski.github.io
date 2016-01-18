@@ -1,4 +1,8 @@
 var appData = {
+    header: {
+        image: "gfx/1500x500.jpg",
+        width: 1500
+    },
     year: new Date().getFullYear(),
     version: "0.15",
 

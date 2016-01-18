@@ -1,6 +1,6 @@
 var appData = {
     year: new Date().getFullYear(),
-    version: "0.14",
+    version: "0.15",
 
     pageNav: [
         {id: 1, title: "About Me", link: "data/data-home.json"},

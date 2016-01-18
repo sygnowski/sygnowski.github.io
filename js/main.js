@@ -18,7 +18,7 @@ var SiteNav = React.createClass({
         });
 
         return (
-            <div className="col-md-2 list-group">
+            <div className="on-mobile col-md-2 list-group">
                 {navItems}
             </div>
         )
@@ -91,12 +91,14 @@ var AboutMe = React.createClass({
 
     render: function () {
         return (
-            <div className="container">
-                <div className="row">
-                    <SiteNav onNav={this.handleNav} data={this.props.data.pageNav}/>
+            <div>
+                <div className="container">
+                    <div className="row">
+                        <SiteNav onNav={this.handleNav} data={this.props.data.pageNav}/>
 
-                    <div className="col-md-6">
-                        <Content title={this.state.title} text={this.state.text}/>
+                        <div className="col-md-10">
+                            <Content title={this.state.title} text={this.state.text}/>
+                        </div>
                     </div>
                 </div>
                 <footer className="footer">

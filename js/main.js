@@ -1,3 +1,5 @@
+'use strict';
+
 var SiteNav = React.createClass({
     getInitialState: function () {
         var firstNavItemId = this.props.data[0].id;
@@ -14,18 +16,18 @@ var SiteNav = React.createClass({
 
             var isSelected = -1 != selection.indexOf(link.id);
 
-            return <SiteNavItem onHandleSelection={hnd} key={link.id} navInfo={link} isSelected={isSelected}/>
+            return <SiteNav.SiteNavItem onHandleSelection={hnd} key={link.id} navInfo={link} isSelected={isSelected}/>
         });
 
         return (
-            <div className="on-mobile col-md-2 list-group">
+            <div className="page-nav col-md-2 list-group">
                 {navItems}
             </div>
         )
     }
 });
 
-var SiteNavItem = React.createClass({
+SiteNav.SiteNavItem = React.createClass({
     getInitialState: function () {
         return {isSelected: false};
     },
@@ -42,7 +44,7 @@ var SiteNavItem = React.createClass({
                   onClick={this.handleClick.bind(this, this.props.navInfo)}
                   className={css}>{this.props.navInfo.title}</a>;
     }
-});
+})
 
 var Content = React.createClass({
     render: function () {

@@ -1,10 +1,11 @@
 var appData = {
     header: {
         image: "gfx/1500x500.jpg",
-        width: 1500
+        width: 1500,
+        height: 500
     },
     year: new Date().getFullYear(),
-    version: "0.15",
+    version: "0.16",
 
     pageNav: [
         {id: 1, title: "About Me", link: "data/data-home.json"},

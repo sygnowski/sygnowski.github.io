@@ -2,6 +2,15 @@
 
 class SiteNav extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            selection: [props.data[0].id],
+            top: 0
+        }
+    }
+
+
     computeValue(width) {
         var navElt = document.getElementById("theNav");
         var navCss = window.getComputedStyle(navElt, null);
@@ -13,14 +22,6 @@ class SiteNav extends React.Component {
 
         var value = Math.floor(wx / maxW * h - actualHeight);
         return value >= 0 ? value : 0;
-    }
-
-    getInitialState() {
-        var firstNavItemId = this.props.data[0].id;
-        return {
-            selection: [firstNavItemId],
-            top: 0
-        }
     }
 
     handleResize() {

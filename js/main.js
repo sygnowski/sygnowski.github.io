@@ -1,7 +1,8 @@
 'use strict';
 
-var SiteNav = React.createClass({
-    computeValue: function (width) {
+class SiteNav extends React.Component {
+
+    computeValue(width) {
         var navElt = document.getElementById("theNav");
         var navCss = window.getComputedStyle(navElt, null);
         var actualHeight = parseInt(navCss.getPropertyValue("height"));
@@ -12,35 +13,40 @@ var SiteNav = React.createClass({
 
         var value = Math.floor(wx / maxW * h - actualHeight);
         return value >= 0 ? value : 0;
-    },
-    getInitialState: function () {
+    }
+
+    getInitialState() {
         var firstNavItemId = this.props.data[0].id;
         return {
             selection: [firstNavItemId],
             top: 0
-        };
-    },
-    handleResize: function () {
+        }
+    }
+
+    handleResize() {
         this.setState({
             top: this.computeValue(window.innerWidth),
             selection: this.state.selection
-        });
-    },
-    componentDidMount: function () {
+        })
+    }
+
+    componentDidMount () {
         this.handleResize();
         window.addEventListener('resize', this.handleResize);
-    },
-    componentWillUnmount: function () {
-        window.removeEventListener('resize', this.handleResize);
-    },
+    }
 
-    handelSelect: function (link) {
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.handleResize);
+    }
+
+    handelSelect (link) {
         this.setState({
             selection: [link.id]
         });
         this.props.onNav(link);
-    },
-    render: function () {
+    }
+
+    render() {
         var hnd = this.handelSelect;
         var selection = this.state.selection;
         var innerContent = this.props.data.map(function (link) {
@@ -60,7 +66,10 @@ var SiteNav = React.createClass({
             </div>
         )
     }
-});
+}
+
+
+
 
 SiteNav.SiteNavItem = React.createClass({
     getInitialState: function () {
